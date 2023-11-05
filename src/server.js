@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { Pool } = require('pg');
+const { Pool } = require("pg");
 const app = require("./app");
 const port = process.env.PORT || 5000;
 
@@ -14,7 +14,7 @@ const pool = new Pool({
 async function main() {
    try {
       await pool.connect();
-      console.log(`🛢️  database connection successfully`);
+      console.log(`🛢️ database connection successfully`);
 
       app.listen(port, () => {
          console.log(`server listening on port ${port}`);
@@ -25,4 +25,4 @@ async function main() {
 }
 main();
 
-module.exports = pool;
+module.exports = { pool };
