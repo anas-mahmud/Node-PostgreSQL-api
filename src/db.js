@@ -15,7 +15,7 @@ async function main() {
    try {
       await pool.connect();
       console.log(`🛢️ database connection successfully`);
-
+      
       app.listen(port, () => {
          console.log(`server listening on port ${port}`);
       });
@@ -25,4 +25,5 @@ async function main() {
 }
 main();
 
-module.exports = { pool };
+
+module.exports = pool;

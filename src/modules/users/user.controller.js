@@ -1,5 +1,7 @@
-const { pool } = require("../../server");
 const { UserService } = require("./user.service");
+const pool = require('../../db');
+
+console.log(pool);
 
 const createUser = async (req, res) => {
    const { user_name, email, password, number, photo, role } = req.body;
