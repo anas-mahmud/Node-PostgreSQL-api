@@ -12,4 +12,4 @@ CREATE TABLE users (
 SELECT * FROM users;
 
 INSERT INTO users (user_name, email, password, number, photo, role)
-VALUES ('yusuf', 'yusufbinimam@gmail.com', '012345', '01071572648', 'https://ibb.co/h8dtV66', 'user');
+VALUES ('anas mahmud', 'anasmahmud523@gmail.com', '987654', '01071572648', 'https://ibb.co/m6qfYWY', 'admin');
