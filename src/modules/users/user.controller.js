@@ -9,7 +9,7 @@ const createUser = async (req, res) => {
          if (error) throw error;
          res.status(200).json({
             status: "success",
-            message: "User data inserted successfully",
+            message: "User inserted successfully",
             data: results
          })
       })
