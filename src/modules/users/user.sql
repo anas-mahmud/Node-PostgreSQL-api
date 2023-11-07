@@ -11,5 +11,7 @@ CREATE TABLE users (
 
 SELECT * FROM users;
 
+SELECT * FROM users WHERE user_id = 10;
+
 INSERT INTO users (user_name, email, password, number, photo, role)
 VALUES ('anas mahmud', 'anasmahmud523@gmail.com', '987654', '01071572648', 'https://ibb.co/m6qfYWY', 'admin');
