@@ -5,9 +5,14 @@ const router = express.Router();
 
 // create a user
 router.post("/create-user", UserController.createUser);
+
 // get all users
 router.get("/", UserController.getAllUsers);
+
 // get user by id
 router.get("/:id", UserController.getUserById);
+
+// update user
+router.put("/update-user", )
 
 module.exports.UserRoute = router;
