@@ -30,9 +30,8 @@ const createUser = async (req, res) => {
 
    } catch (error) {
       res.status(400).json({
-         status: "error",
-         message: "Failed to insert user",
-         error: error.message
+         message: "Database Query is Failed",
+         error
       })
    }
 };
@@ -56,9 +55,8 @@ const getAllUsers = async (req, res) => {
       })
    } catch (error) {
       res.status(400).json({
-         status: "error",
-         message: "Failed to get all users",
-         error: error.message
+         message: "Database Query is Failed",
+         error
       })
    }
 };
@@ -70,7 +68,7 @@ const getUserById = async (req, res) => {
          if (error) {
             res.status(400).json({
                status: "error",
-               message: "Failed to get all users",
+               message: "Failed to get user by id",
                error
             })
          } else {
@@ -83,9 +81,46 @@ const getUserById = async (req, res) => {
       })
    } catch (error) {
       res.status(400).json({
-         status: "error",
-         message: "Failed to get user by id",
-         error: error.message
+         message: "Database Query is Failed",
+         error
+      })
+   }
+};
+
+const deleteUserById = async (req, res) => {
+   const id = parseInt(req.params.id);
+   try {
+      pool.query(UserService.getUserById, [id], (error, results) => {
+         if (error) {
+            res.status(400).json({
+               status: "error",
+               message: "Failed to user by id",
+               error
+            })
+         } else if (!results.rows.length) {
+            res.send("User ID does not exist in database")
+         } else {
+            pool.query(UserService.deleteUserById, [id], (error, results) => {
+               if (error) {
+                  res.status(400).json({
+                     status: "error",
+                     message: "Failed to delete user by id",
+                     error
+                  })
+               } else {
+                  res.status(200).json({
+                     status: "success",
+                     message: "Delete user by id successful",
+                     data: results?.rows
+                  })
+               }
+            });
+         }
+      });
+   } catch (error) {
+      res.status(400).json({
+         message: "Database Query is Failed",
+         error
       })
    }
 };
@@ -93,5 +128,6 @@ const getUserById = async (req, res) => {
 module.exports.UserController = {
    createUser,
    getAllUsers,
-   getUserById
+   getUserById,
+   deleteUserById
 };
