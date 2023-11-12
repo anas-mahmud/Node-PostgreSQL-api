@@ -30,7 +30,7 @@ const createUser = async (req, res) => {
 
    } catch (error) {
       res.status(400).json({
-         message: "Database Query is Failed",
+         message: "Query Operation is Failed",
          error
       })
    }
@@ -55,7 +55,7 @@ const getAllUsers = async (req, res) => {
       })
    } catch (error) {
       res.status(400).json({
-         message: "Database Query is Failed",
+         message: "Query Operation is Failed",
          error
       })
    }
@@ -81,7 +81,7 @@ const getUserById = async (req, res) => {
       })
    } catch (error) {
       res.status(400).json({
-         message: "Database Query is Failed",
+         message: "Query Operation is Failed",
          error
       })
    }
@@ -119,7 +119,7 @@ const deleteUserById = async (req, res) => {
       });
    } catch (error) {
       res.status(400).json({
-         message: "Database Query is Failed",
+         message: "Query Operation is Failed",
          error
       })
    }
