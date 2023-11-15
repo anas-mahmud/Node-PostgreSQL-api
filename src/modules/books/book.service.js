@@ -4,8 +4,11 @@ const createBook = "INSERT INTO books (title, author, genre, isbn, pages, public
 
 const getAllBooks = "SELECT * FROM books";
 
+const getBookById = "SELECT * FROM books WHERE book_id = $1";
+
 module.exports.BookService = {
    checkBookIsbn,
    createBook,
-   getAllBooks
-}
+   getAllBooks,
+   getBookById
+};

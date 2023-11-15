@@ -61,7 +61,36 @@ const getAllBooks = async (req, res) => {
    }
 };
 
+const getBookById = async (req, res) => {
+   const id = parseInt(req.params.id);
+   try {
+      pool.query(BookService.getBookById, [id], (error, results) => {
+         if (error) {
+            res.status(400).json({
+               status: "error",
+               message: "Failed to get book information by id",
+               error
+            })
+         } else if (!results?.rows?.length) {
+            res.send("Book ID does not exist in database")
+         } else {
+            res.status(200).json({
+               status: "success",
+               message: "Get book information by id successful",
+               data: results?.rows
+            })
+         }
+      });
+   } catch (error) {
+      res.status(400).json({
+         message: "Query Operation is Failed",
+         error
+      });
+   }
+};
+
 module.exports.BookController = {
    createBook,
-   getAllBooks
+   getAllBooks,
+   getBookById
 }
