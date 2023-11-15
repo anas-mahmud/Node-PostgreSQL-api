@@ -15,3 +15,5 @@ SELECT * FROM users WHERE user_id = 10;
 
 INSERT INTO users (user_name, email, password, number, photo, role)
 VALUES ('user_name', 'email', '******', '00000000000', 'https:**********', '*****');
+
+SELECT email FROM users s WHERE s.email = $1;
