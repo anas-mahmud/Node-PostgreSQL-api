@@ -9,23 +9,24 @@ const createUser = async (req, res) => {
       pool.query(UserService.checkEmailExist, [email], (error, results) => {
          if (results?.rows?.length) {
             res.send("Email already exists");
+         } else {
+            // insert a new user
+            pool.query(UserService.createUser, data, (error, results) => {
+               if (error) {
+                  res.status(400).json({
+                     status: "error",
+                     message: "Failed to insert user",
+                     error
+                  })
+               } else {
+                  res.status(200).json({
+                     status: "success",
+                     message: "User inserted successfully",
+                     data: results?.rows
+                  })
+               }
+            })
          }
-         // insert a new user
-         pool.query(UserService.createUser, data, (error, results) => {
-            if (error) {
-               res.status(400).json({
-                  status: "error",
-                  message: "Failed to insert user",
-                  error
-               })
-            } else {
-               res.status(200).json({
-                  status: "success",
-                  message: "User inserted successfully",
-                  data: results?.rows
-               })
-            }
-         })
       });
 
    } catch (error) {
