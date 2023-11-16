@@ -93,6 +93,7 @@ const updateBookById = async (req, res) => {
    const id = parseInt(req.params.id);
    const price = req.body.price;
    try {
+      // check if book_id is exist
       pool.query(BookService.checkBookId, [id], (error, results) => {
          if (error) {
             res.status(400).json({
@@ -103,6 +104,7 @@ const updateBookById = async (req, res) => {
          } else if (!results.rows.length) {
             res.send("Book ID does not exist in database")
          } else {
+            // update book price by id 
             pool.query(BookService.updateBookById, [price, id], (error, results) => {
                if (error) {
                   res.status(400).json({
@@ -131,6 +133,7 @@ const updateBookById = async (req, res) => {
 const deleteBookById = async (req, res) => {
    const id = parseInt(req.params.id);
    try {
+      // check if book_id is exist
       pool.query(BookService.checkBookId, [id], (error, results) => {
          if (error) {
             res.status(400).json({
@@ -141,6 +144,7 @@ const deleteBookById = async (req, res) => {
          } else if (!results.rows.length) {
             res.send("Book ID does not exist in database")
          } else {
+            // delete book by id from database 
             pool.query(BookService.deleteBookById, [id], (error, results) => {
                if (error) {
                   res.status(400).json({
