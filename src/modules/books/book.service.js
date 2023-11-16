@@ -10,11 +10,14 @@ const getBookById = "SELECT * FROM books WHERE book_id = $1";
 
 const updateBookById = "UPDATE books SET price = $1 WHERE book_id = $2";
 
+const deleteBookById = "DELETE FROM books WHERE book_id = $1";
+
 module.exports.BookService = {
    checkBookIsbn,
    checkBookId,
    createBook,
    getAllBooks,
    getBookById,
-   updateBookById
+   updateBookById,
+   deleteBookById
 };

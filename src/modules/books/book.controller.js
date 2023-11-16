@@ -128,9 +128,48 @@ const updateBookById = async (req, res) => {
    }
 };
 
+const deleteBookById = async (req, res) => {
+   const id = parseInt(req.params.id);
+   try {
+      pool.query(BookService.checkBookId, [id], (error, results) => {
+         if (error) {
+            res.status(400).json({
+               status: "error",
+               message: "Failed to find book id",
+               error
+            })
+         } else if (!results.rows.length) {
+            res.send("Book ID does not exist in database")
+         } else {
+            pool.query(BookService.deleteBookById, [id], (error, results) => {
+               if (error) {
+                  res.status(400).json({
+                     status: "error",
+                     message: "Failed to delete book by id",
+                     error
+                  });
+               } else {
+                  res.status(200).json({
+                     status: "success",
+                     message: "Delete book by id successful",
+                     data: results?.rows
+                  });
+               }
+            })
+         }
+      });
+   } catch (error) {
+      res.status(400).json({
+         message: "Query Operation is Failed",
+         error
+      });
+   }
+};
+
 module.exports.BookController = {
    createBook,
    getAllBooks,
    getBookById,
-   updateBookById
+   updateBookById,
+   deleteBookById
 }
