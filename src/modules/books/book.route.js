@@ -12,4 +12,7 @@ router.get('/', BookController.getAllBooks);
 // get book by id
 router.get('/:id', BookController.getBookById);
 
+// update book by id
+router.put('/update-book/:id', BookController.updateBookById);
+
 module.exports.BookRoute = router;

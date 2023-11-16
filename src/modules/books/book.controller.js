@@ -89,8 +89,48 @@ const getBookById = async (req, res) => {
    }
 };
 
+const updateBookById = async (req, res) => {
+   const id = parseInt(req.params.id);
+   const price = req.body.price;
+   try {
+      pool.query(BookService.checkBookId, [id], (error, results) => {
+         if (error) {
+            res.status(400).json({
+               status: "error",
+               message: "Failed to find book id",
+               error
+            })
+         } else if (!results.rows.length) {
+            res.send("Book ID does not exist in database")
+         } else {
+            pool.query(BookService.updateBookById, [price, id], (error, results) => {
+               if (error) {
+                  res.status(400).json({
+                     status: "error",
+                     message: "Failed to update book info by id",
+                     error
+                  });
+               } else {
+                  res.status(200).json({
+                     status: "success",
+                     message: "Update book info by id successful",
+                     data: results?.rows
+                  });
+               }
+            })
+         }
+      })
+   } catch (error) {
+      res.status(400).json({
+         message: "Query Operation is Failed",
+         error
+      });
+   }
+};
+
 module.exports.BookController = {
    createBook,
    getAllBooks,
-   getBookById
+   getBookById,
+   updateBookById
 }
