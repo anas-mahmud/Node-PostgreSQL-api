@@ -16,4 +16,5 @@ SELECT * FROM books;
 INSERT INTO books (title, author, genre, isbn, pages, publication_date, publisher, price, photo)
 VALUES ('Harry Potter and the Sorcerer''s Stone', 'J.K. Rowling', 'fantasy', '9780747532740', 223, '1997-06-26', 'Bloomsbury', 24.95, 'https://ibb.co/tL84VCB');
 
+
 SELECT isbn FROM books b WHERE b.isbn = $1;
