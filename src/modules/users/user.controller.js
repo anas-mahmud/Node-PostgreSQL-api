@@ -1,6 +1,7 @@
 const { UserService } = require("./user.service");
 const pool = require("../../db");
 
+// API controller fro create a new user
 const createUser = async (req, res) => {
   const { user_name, email, password, number, photo, role } = req.body;
   const data = [user_name, email, password, number, photo, role];
