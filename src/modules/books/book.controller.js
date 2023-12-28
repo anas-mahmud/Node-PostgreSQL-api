@@ -1,6 +1,7 @@
 const pool = require("../../db");
 const { BookService } = require("./book.service");
 
+// API controller for create / add a new book
 const createBook = async (req, res) => {
   const {
     title,
@@ -56,6 +57,7 @@ const createBook = async (req, res) => {
   }
 };
 
+// API controller for get all books info
 const getAllBooks = async (req, res) => {
   try {
     pool.query(BookService.getAllBooks, (error, results) => {
@@ -81,6 +83,7 @@ const getAllBooks = async (req, res) => {
   }
 };
 
+// API controller for get book info by id
 const getBookById = async (req, res) => {
   const id = parseInt(req.params.id);
   try {
@@ -109,6 +112,7 @@ const getBookById = async (req, res) => {
   }
 };
 
+// API controller for update book info by id
 const updateBookById = async (req, res) => {
   const id = parseInt(req.params.id);
   const price = req.body.price;
@@ -154,6 +158,7 @@ const updateBookById = async (req, res) => {
   }
 };
 
+// API controller for delete book by id
 const deleteBookById = async (req, res) => {
   const id = parseInt(req.params.id);
   try {

@@ -1,7 +1,7 @@
 const { UserService } = require("./user.service");
 const pool = require("../../db");
 
-// API controller fro create a new user
+// API controller for create a new user
 const createUser = async (req, res) => {
   const { user_name, email, password, number, photo, role } = req.body;
   const data = [user_name, email, password, number, photo, role];
@@ -37,6 +37,7 @@ const createUser = async (req, res) => {
   }
 };
 
+// API controller for get all users
 const getAllUsers = async (req, res) => {
   try {
     pool.query(UserService.getAllUsers, (error, results) => {
@@ -62,6 +63,7 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+// API controller for get user by ID
 const getUserById = async (req, res) => {
   const id = parseInt(req.params.id);
   try {
@@ -88,6 +90,7 @@ const getUserById = async (req, res) => {
   }
 };
 
+// API controller for update user by ID
 const updateUserById = async (req, res) => {
   const id = parseInt(req.params.id);
   const { password } = req.body;
@@ -131,6 +134,7 @@ const updateUserById = async (req, res) => {
   }
 };
 
+// API controller for delete user by ID
 const deleteUserById = async (req, res) => {
   const id = parseInt(req.params.id);
   try {
